@@ -133,10 +133,17 @@ public class Verse implements Serializable{
 			parsedVerse.add(Character.toLowerCase(this.verse.charAt(stringCnt)));
 			stringCnt++;
 			//Skips until the next word
-			while(stringCnt < this.verse.length() && !(this.verse.substring(stringCnt, stringCnt+1).equals(" ")) && !(this.verse.substring(stringCnt, stringCnt+1).equals("\""))){
+			while(stringCnt < this.verse.length() && !(this.verse.substring(stringCnt, stringCnt+1).equals(" "))){
+				stringCnt++;
+
+			}
+
+			stringCnt++;	// Skips over the space that was found
+
+			//Skips over open/closed quotations if they are present
+			if(stringCnt < this.verse.length() && this.verse.substring(stringCnt, stringCnt+1).equals("\"")){
 				stringCnt++;
 			}
-			stringCnt++;
 		}
 		return parsedVerse;
 	}
